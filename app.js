@@ -23,7 +23,7 @@ app.get('/', function (req, res) {
     res.render("index");
 });
 
-app.get('/adding_item', function (req, res) {
+app.get('/add_item', function (req, res) {
     res.render("add_item");
 });
 
@@ -68,6 +68,29 @@ app.post('/get_information', function (req, res) {
 
     });
     
+});
+
+app.post("/add_item",function(req, res){
+    let product_name = req.body.product_name;
+    let product_quantity = req.body.product_quantity;
+    let category = req.body.category;
+    let queryAdding = "INSERT INTO product (name,quantity,product_type_id) VALUES('" + product_name + "','" + product_quantity + "','" + category + "')";
+
+    connection.query(queryAdding,function(err,result){
+        let product_id = result.insertId;
+        if(err){
+            res.render("add_item",{error:"Product is not added, Try Again!"});
+        }
+            let queryDetail = "INSERT INTO product_detail (adding_time,updating_time,product_id) VALUES(NOW(),NOW()," + product_id + ")";
+            connection.query(queryDetail,function(err){
+                if(!err){
+                    res.render("add_item",{success:"Product is successfully added!"});
+                }        
+            });
+
+    });
+
+    console.log(product_name + ", " +product_quantity + ", "+category)
 });
 
 
