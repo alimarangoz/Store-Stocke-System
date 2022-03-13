@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/style.css">
+    <title>Get Information Page</title>
+</head>
+<body>
+    <header>
+        <%- include ('partials/navbar.ejs') -%>
+    </header>
+<br>
+    <form action="get_information" method = "POST" onchange="this.form.submit()">
+        <input type="number" id="product_id" name="product_id"  placeholder="Enter the ID, search for" required min="1">
+        <input type="submit" class="button" value="Search">
+    </form>
+
+    <% if(typeof error != 'undefined') { %>
+        <span style="color:red"><%= error %></span>
+    <% } %>
+
+    <% if(typeof type != 'undefined') { %>
+        <h1 style="font-family:'Helvetica Neue', Helvetica" class="page-header">Product Details</h1>
+        <ul>
+            <li> Type: <%=  type %> </li>
+            <li> Name: <%= name %> </li>
+            <li> Quantity: <%= quantity %> </li>
+            <li> Creating Datetime: <%= adding_time %> </li>    
+            <li> Updating Datetime: <%= updating_time %> </li>
+        </ul>
+        <% } %>
+
+    
+    
+</body>
+</html>
