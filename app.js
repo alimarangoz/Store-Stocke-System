@@ -27,10 +27,6 @@ app.get('/add_item', function (req, res) {
     res.render("add_item");
 });
 
-app.get('/updating_item', function (req, res) {
-    res.render("update_item");
-});
-
 app.get('/deleting_item', function (req, res) {
     res.render("delete_item");
 });
@@ -39,8 +35,35 @@ app.get("/get_information", function (req, res) {
     res.render("get_info");
 });
 
+app.get('/updating_item', function (req, res) {
+
+    let queryProduct = "SELECT * FROM product JOIN product_type ON product_type.id = product_type_id JOIN product_detail ON product_id = product.id;"
+    connection.query(queryProduct,function(err,result){
+        if (err) throw err;
+        let productArray = [];
+        for(let i = 0; i < result.length; i++) {
+            productArray.push(
+                {
+                idEjs : result[i].id,
+                nameEjs : result[i].name,
+                quantityEjs : result[i].quantity,
+                typeEjs : result[i].type,
+                adding_timeEjs : result[i].adding_time,
+                updating_timeEjs : result[i].updating_time,
+                }
+            );          
+        }
+        
+        res.render("update_item",{productArrayEjs:productArray,loop:result.length});
+        
+        
+    });
+});
 
 
+
+
+//TODO USE JOIN LIKE UPDATE ITEM
 app.post('/get_information', function (req, res) {
     product_id = req.body.product_id;
     query = "SELECT * FROM product WHERE id =" + (product_id);
