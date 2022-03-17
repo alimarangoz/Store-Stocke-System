@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/style.css">
+    <%- include ('partials/bootstrap.ejs') -%>
     <title>Get Information Page</title>
 </head>
 <body>
@@ -12,9 +13,9 @@
         <%- include ('partials/navbar.ejs') -%>
     </header>
 <br>
-    <form action="get_information" method = "POST" onchange="this.form.submit()">
+    <form action="/api/get_information" method = "POST" onchange="this.form.submit()">
         <input type="number" id="product_id" name="product_id"  placeholder="Enter the ID, search for" required min="1">
-        <input type="submit" class="button" value="Search">
+        <input type="submit" class="button" value="Search"> <br><br>
     </form>
 
     <% if(typeof error != 'undefined') { %>

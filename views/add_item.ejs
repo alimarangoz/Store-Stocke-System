@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/style.css">
+    <%- include ('partials/bootstrap.ejs') -%>
     <title>Add Item Page</title>
 </head>
 <body>
@@ -13,7 +14,7 @@
     </header>
     <br>
     <div class="form-group">
-        <form action="/add_item" method="POST">
+        <form action="/api/add_item" method="POST">
 
             <label for="category">Choose a category:</label>
             <select name="category" id="category">
@@ -23,11 +24,11 @@
             </select>
             <br><br>
 
-            <label for="add_item"> Product Name: </label>
+            <label for="product_name"> Product Name: </label>
             <input type="text" name="product_name" id="item_name" placeholder="Add a product name" required> <br><br>
             <label for="product_quantity">Product Quantity: </label>
             <input type="text" name="product_quantity" id="product_quantity" placeholder="Add a product quantity" required> <br><br>
-            <input type="submit" name="submit" id="submit" value="Add">
+            <button type="submit" class="btn btn-primary" value="Add">Add</button>
             
         </form>
     </div>
