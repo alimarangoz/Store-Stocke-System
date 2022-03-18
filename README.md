@@ -24,6 +24,16 @@ _Go to admin from dashboard_
 
 _Select the new database icon and then select sql, then copy and paste all information in the stock_system_db.sql file to the sql part and run it._
 
+## Database System
+
+- Store stock system uses MySQL as a DBMS which is the one of the relational database. In this project there are 3 table and these tables are 3NF. 
+- Atomicity and Functional Dependecy rules are considered while creating the data tables. 
+
+![mysql_product](https://user-images.githubusercontent.com/57812346/158977608-bcc4ea89-cc70-4312-9097-96f5b2eedfb6.png)
+
+_There are one-to-one and one-to-many relations between tables. Each product has just one type, this means it should be one-to-one relation._
+_Every product has creating and updating time and different products may have same day so it should be one-to-many relation._
+
 ## Running The Application
 
 - After the database step, we ready to run server and application;
